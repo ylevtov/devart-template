@@ -1,16 +1,20 @@
 {
     "technologies": {
-        "apis": [
-            "insert apis"
+        "languages": [
+            "javascript",
+			"html"
         ],
         "platforms": [
-            "Chrome OS"
+            "Chrome OS",
+			"Android",
+			"iOS",
+			"OS X"
         ],
         "toolkits": [
             "Node.js",
 			"Socket.io",
 			"Ableton Live",
-			"Max MSP",
+			"Max MSP"
         ]
     },
     "themes": [
