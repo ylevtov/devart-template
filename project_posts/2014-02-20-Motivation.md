@@ -21,5 +21,5 @@ Installations are one of the best ways of allowing people to experience dynamic 
 
 ### More on dynamic music
 I have been giving talks on the topic of dynamic music that go into much more depth than I have written above. If you are interested in finding out more, please check out the following presentation:
-<iframe src="//player.vimeo.com/video/63872410" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/63872410">Yuli Levtov on new ways of interacting with digital music</a> from <a href="http://vimeo.com/user1690109">Marek Pawlowski</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-<iframe src="http://www.slideshare.net/slideshow/embed_code/31441526" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+[Dynamic Music: An Overview (video)](http://vimeo.com/63872410)  
+[Dynamic Music: An Overview (slides)](http://www.slideshare.net/slideshow/embed_code/31441526)
