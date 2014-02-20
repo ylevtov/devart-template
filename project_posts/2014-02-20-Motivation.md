@@ -17,9 +17,11 @@ Dynamic music encompasses the formats of music beyond the MP3. Companies like Rj
 
 A big problem with dynamic music is that it can't be as readily distributed as, say, an MP3. Although the devices we use to listen to music are plenty capable of playing back dynamic music formats, we are still in the early stages of the art form where there are no standards to adhere to, making it difficult to distribute dynamic music en masse.  
 
-Installations are one of the best ways of allowing people to experience dynamic music. A controlled environment with good speakers, lighting possibilities and a powerful computer make for an exciting blank canvas on which musicians can craft beautiful interactive auditory experiences.
+Installations are one of the best ways of allowing people to experience dynamic music. A controlled environment with good speakers, lighting possibilities and a powerful computer make for an exciting blank canvas on which musicians can craft beautiful interactive auditory experiences. Furthermore, visitors are all carrying round powerful, modern browsers on their smartphones, making personal interaction without the need for any dedicated hardware very viable and exciting.
 
 ### More on dynamic music
-I have been giving talks on the topic of dynamic music that go into much more depth than I have written above. If you are interested in finding out more, please check out the following presentation:
+I have been giving talks on the topic of dynamic music that go into much more depth than I have written above. If you are interested in finding out more, please check out the following presentation:  
 [Dynamic Music: An Overview (video)](http://vimeo.com/63872410)  
-[Dynamic Music: An Overview (slides)](http://www.slideshare.net/slideshow/embed_code/31441526)
+[Dynamic Music: An Overview (slides)](http://www.slideshare.net/slideshow/embed_code/31441526)  
+
+Yuli
