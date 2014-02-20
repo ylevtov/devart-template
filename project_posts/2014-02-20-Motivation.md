@@ -8,10 +8,9 @@ A slightly left-field but relevant equivalent to this principle is the economic 
 
 I'm therefore very interested in finding a way of allowing many people to interact with an installation, but in such a way where visitors understand that there is a communal interest in contributing their interactions in a measured and timely way.
 
-## Background
-I have been working in the field of 'dynamic music' for close to five years, and, along with tuition and inspiration from Andy Farnell, it really is the reason I began to write code and programme in the first place.
+## Dynamic music
+I have been working in the field of 'dynamic music' for close to five years, and, along with tuition and inspiration from Andy Farnell, it really is the reason I began to write code and programme in the first place.  
 
-### Dynamic music
 Dynamic music challenges the notion that a piece of recorded music is a static entity, sounding the same every time it is listened to. It introduces variation, spontaneity, listener interaction and much more to the listening experience, and makes it more ephemeral, like it was in the days before the means to record and 'freeze' sound were commonplace.  
 
 Dynamic music encompasses the formats of music beyond the MP3. Companies like RjDj and artists like Brian Eno, Björk, and many others, have shown the creative depth that these new formats offer to artists and listeners alike, yet they are still niche.  
