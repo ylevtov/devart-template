@@ -4,13 +4,18 @@
             "insert apis"
         ],
         "platforms": [
-            "insert platforms"
+            "Chrome OS"
         ],
         "toolkits": [
-            "insert toolkits"
+            "Node.js",
+			"Socket.io",
+			"Ableton Live",
+			"Max MSP",
         ]
     },
     "themes": [
-        "insert themes"
+        "Dynamic music",
+		"Social interaction",
+		"Hive mind"
     ]
 }
