@@ -23,5 +23,5 @@ Installations are one of the best ways of allowing people to experience dynamic 
 I have been giving talks on the topic of dynamic music that go into much more depth than I have written above. If you are interested in finding out more, please check out the following presentation:  
 [Dynamic Music: An Overview (video)](http://vimeo.com/63872410)  
 [Dynamic Music: An Overview (slides)](http://www.slideshare.net/slideshow/embed_code/31441526)  
-
+ 
 Yuli
