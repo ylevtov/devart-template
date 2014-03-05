@@ -1,4 +1,3 @@
-### Reading List 1
 A couple of interesting and relevant items have popped up on my radar recently and I thought it worth noting them, here:  
 
 First is a fantastic article written by [Dan Jones](http://www.twitter.com/ideoforms) about the relationship between artists and the tools they use to create their art.  
