@@ -15,10 +15,6 @@ For me these behaviours cover everything from a group of friends playing multipl
 
 In these examples the joy of playing the game comes from the actions of the people around you - the technology is merely an enabler.
 
-<<<<<<< HEAD:project_posts/2014-02-20-Motivation-2.md
-What excites me about this project is the chance to work on a set of rules, gentle instructions and feedback that ideally will create some fun and novel behaviour between complete strangers. 
+
 
 Owen
-=======
-What excites me about this project is the chance to work on a set of rules, gentle instructions and feedback that ideally will create some fun and novel behaviour between complete strangers.
->>>>>>> 3d860e398ed02ef8fdde1b46ed85de465ccb873d:project_posts/2014-02-27-Motivation-2.md
