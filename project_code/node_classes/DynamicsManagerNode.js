@@ -194,7 +194,7 @@ p._startNextSong = function() {
 	}
 
 	var nextSongIndex = this.currentSongIndex + 1;
-	if (this.currentSongIndex >= this.numSongs) this.currentSongIndex = 0;
+	if (this.currentSongIndex > this.numSongs) this.currentSongIndex = 0;
 
 	var nextSong = this.controlData.songs[nextSongIndex];
 
