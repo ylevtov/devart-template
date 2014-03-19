@@ -51,7 +51,7 @@
 					"midimessage_1" : 169,
 					"midimessage_2" : 13,
 					"midimessage_3" : 0,
-					"type" : "toggle",
+					"type" : "single",
 					"expiry" : -1
 				},
 				{
@@ -62,7 +62,7 @@
 					"midimessage_1" : 169,
 					"midimessage_2" : 13,
 					"midimessage_3" : 0,
-					"type" : "toggle",
+					"type" : "single",
 					"expiry" : -1
 				},
 				{
@@ -73,7 +73,7 @@
 					"midimessage_1" : 169,
 					"midimessage_2" : 13,
 					"midimessage_3" : 0,
-					"type" : "toggle",
+					"type" : "single",
 					"expiry" : -1
 				}
 			]
@@ -129,7 +129,7 @@
 					"midimessage_1" : 169,
 					"midimessage_2" : 13,
 					"midimessage_3" : 0,
-					"type" : "toggle",
+					"type" : "single",
 					"expiry" : -1
 				},
 				{
@@ -140,7 +140,7 @@
 					"midimessage_1" : 169,
 					"midimessage_2" : 13,
 					"midimessage_3" : 0,
-					"type" : "toggle",
+					"type" : "single",
 					"expiry" : -1
 				},
 				{
@@ -151,7 +151,7 @@
 					"midimessage_1" : 169,
 					"midimessage_2" : 13,
 					"midimessage_3" : 0,
-					"type" : "toggle",
+					"type" : "single",
 					"expiry" : -1
 				}
 			]
