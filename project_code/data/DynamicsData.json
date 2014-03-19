@@ -1,0 +1,161 @@
+{
+	"songs" : [
+		{ 
+			"name" : "Airy",
+			"duration_minutes" : "2",
+			"start_midi_message_1" : 156,
+			"start_midi_message_2" : 156,
+			"start_midi_message_3" : 156,
+			"stop_midi_message_1" : 155,
+			"stop_midi_message_2" : 155,
+			"stop_midi_message_3" : 155,
+			"cards" : [
+				{
+					"name" : "kototar-1-shot",
+					"description" : "Plays a note on the Kototar",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "arp-tube-1-shot",
+					"description" : "Plays a note on the Arp Tube",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "drum-1-shot",
+					"description" : "Plays a drum hit",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "bass-toggle",
+					"description" : "Toggle bass on/off",
+					"level" : 1,
+					"max_in_play" : 1,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "toggle",
+					"expiry" : -1
+				},
+				{
+					"name" : "drums-toggle",
+					"description" : "Toggle drums on/off",
+					"level" : 1,
+					"max_in_play" : 1,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "toggle",
+					"expiry" : -1
+				},
+				{
+					"name" : "bells-toggle",
+					"description" : "Toggle bells on/off",
+					"level" : 1,
+					"max_in_play" : 1,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "toggle",
+					"expiry" : -1
+				}
+			]
+		},
+		{ 
+			"name" : "Grains",
+			"duration_minutes" : "3",
+			"start_midi_message_1" : 156,
+			"start_midi_message_2" : 156,
+			"start_midi_message_3" : 156,
+			"stop_midi_message_1" : 155,
+			"stop_midi_message_2" : 155,
+			"stop_midi_message_3" : 155,
+			"cards" : [
+				{
+					"name" : "kototar-1-shot",
+					"description" : "Plays a note on the Kototar",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "arp-tube-1-shot",
+					"description" : "Plays a note on the Arp Tube",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "drum-1-shot",
+					"description" : "Plays a drum hit",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "bass-toggle",
+					"description" : "Toggle bass on/off",
+					"level" : 1,
+					"max_in_play" : 1,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "toggle",
+					"expiry" : -1
+				},
+				{
+					"name" : "drums-toggle",
+					"description" : "Toggle drums on/off",
+					"level" : 1,
+					"max_in_play" : 1,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "toggle",
+					"expiry" : -1
+				},
+				{
+					"name" : "bells-toggle",
+					"description" : "Toggle bells on/off",
+					"level" : 1,
+					"max_in_play" : 1,
+					"midimessage_1" : 169,
+					"midimessage_2" : 13,
+					"midimessage_3" : 0,
+					"type" : "toggle",
+					"expiry" : -1
+				}
+			]
+		}
+	]
+
+}

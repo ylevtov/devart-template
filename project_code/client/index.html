@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamics Client</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+	<link rel="stylesheet" href="css/client-style.css"/>
+
+	<script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+	<script src="js/canvas-nebula.js"></script>
+	<script src="js/DynamicsCardClient.js"></script>
+
+	<script src="//localhost:8081/socket.io/socket.io.js"></script>
+
+	<script>
+
+	var serverSocket;
+	var bgCanvas;
+	var cards = [];
+	var username = "user_" + parseInt(Math.random() * 10000);
+
+	var cardContainer;
+
+	document.addEventListener("DOMContentLoaded", function() {
+
+		cardContainer = document.getElementById("cardContainer");
+		bgCanvas = document.getElementById("bgCanvas");
+
+		serverSocket = io.connect("http://localhost:8081");
+
+		serverSocket.on("connect", function() {
+			
+			serverSocket.on("beat", onBeat);
+
+			serverSocket.on("assignCard", function(aData){
+
+				var type = "button";
+				switch(aData.type){
+					case "single":
+						type = "button";
+					break;
+
+					// TODO : add other types here
+				}
+
+				var newCard = new DynamicsCardClient(serverSocket, aData.name, type, aData.description);
+
+				cards.push(newCard);
+				newCard.show(cardContainer);
+
+			});
+
+			// tell the server we're ready to join
+			serverSocket.emit("adduser", username);
+
+
+
+		});
+
+		
+		performLayout();
+
+		window.onresize = performLayout;
+	});
+
+	function onBeat() {
+
+		cardContainer.className = "beat";
+		setTimeout(function() {
+			cardContainer.className = "";
+		}.bind(this), 500);
+
+	};
+
+	function performLayout() {
+
+		var windowWidth = window.innerWidth;
+		var windowHeight = window.innerHeight;
+
+		if (windowWidth > windowHeight){
+
+			bgCanvas.style.width = "100%";
+			bgCanvas.style.height = "";
+
+		} else {
+
+			bgCanvas.style.height = "100%";
+			bgCanvas.style.width = "";
+
+		}
+
+	};
+
+	</script>
+
+</head>
+<body>
+
+<div id="siteContainer">
+
+	<div id="background">
+
+		<canvas id="bgCanvas" width="570" height="570"></canvas>
+		<canvas id="bgCanvas2" width="570" height="570" style="display:none"></canvas>
+		<canvas id="bgCanvas3" width="570" height="570" style="display:none"></canvas>
+
+	</div>
+
+	<div id="listenMessage">LISTEN<br/>AND WAIT</div>
+
+	<div id="cardContainer">
+
+
+	</div>
+
+
+	<div id="title">DYNAMICS</div>
+
+
+
+</div>
+
+</body>
+</html>
