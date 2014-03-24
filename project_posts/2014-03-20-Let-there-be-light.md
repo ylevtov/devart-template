@@ -12,9 +12,5 @@ I created a M4L patch to grab all of these values and send them to Pd over OSC. 
 
 ![Pd DMX lamp bussing system](project_images/pd-dmx-bus.png?raw=true "Pd DMX lamp bussing system")
 
-I only had access to two of the eight lamps when I started prototyping this so I made a little visualizer in Pd to simulate the rig.
-
-![Pd lighting visualizer](project_images/pd-dmx-bus.jpg?raw=true "Pd lighting visualizer")
-
-Here's a little video of some of the lighting sequences. The real lamps you can see are only lamps one of two of eight, so it's a bit hard to see what's going on, but you get the idea...
+Here's a little video of some of the lighting sequences. I only had access to two of the eight lamps when I started prototyping this so I made a little visualizer in Pd to simulate the rig. The real lamps you can see are only lamps one and two of eight, so it's a bit hard to see what's going on, but you get the idea...
 http://www.youtube.com/watch?v=NK9E5z6s99s&feature=youtu.be
