@@ -9,8 +9,14 @@ var DynamicsClientNode = function(aSocket, aUsername) {
 	this.currentLevel = 0;
 	this.activeCards = {};
 
-	this.socket.on('disconnect', this._didDisconnect.bind(this));
-	this.socket.on('cardAltered', this._didAlterCard.bind(this));
+	
+	this._cardExpiredBound = this._cardExpired.bind(this);
+	this._cardClientUpdateBound = this._cardClientUpdate.bind(this);
+	this._clientDisconnectBound = this._didDisconnect.bind(this);
+	this._cardAlteredBound  = this._didAlterCard.bind(this);
+
+	this.socket.on('disconnect', this._clientDisconnectBound);
+	this.socket.on('cardAltered', this._cardAlteredBound);
 
 };
 
@@ -20,14 +26,21 @@ var p = DynamicsClientNode.prototype = new EventEmitter();
 
 p.assignCard = function(aCard){
 
+	console.log(this.activeCards);
+
+	console.log("Username : " + this.username + " assigned card : " + aCard.name);
+
 	this.activeCards[aCard.name] = aCard;
-	aCard.on('expired', this._cardExpired.bind(this));
+	this.activeCards[aCard.name].once('expired', this._cardExpiredBound);
+	this.activeCards[aCard.name].on('clientCardUpdate', this._cardClientUpdateBound);
 
 	this.socket.emit("assignCard", {
 		name : aCard.name,
 		description : aCard.description,
 		type : aCard.type
 	});
+
+	aCard.clientConnect(this);
 
 };
 
@@ -50,11 +63,32 @@ p.otherClientStateChanged = function(aData){
 
 };
 
+p._cardClientUpdate = function(aData){
+
+	this.socket.emit('clientCardUpdate', aData);
+
+}
+
 p._cardExpired = function(aName){
 
-	delete this.activeCards[aName];
+	var expiredCard = this.activeCards[aName];
 
-	this.socket.emit('cardExpired', aName);
+	if (expiredCard){
+
+		console.log("DynamicsClientNode :: card " + aName + " expired");
+
+		this.socket.emit('cardExpired', aName);
+
+		
+		expiredCard.removeListener("expired", this._cardExpiredBound);
+		expiredCard.removeListener('clientCardUpdate', this._cardClientUpdateBound);
+
+		expiredCard.clientDisconnect(this);
+
+		delete this.activeCards[aName];
+
+	}
+
 
 }
 
@@ -74,6 +108,9 @@ p._didAlterCard = function(aData){
 		this.emit('stateChanged', aData);
 
 		if (cardAltered.type == "single"){
+
+			console.log("Immediately expiring card : " + cardAltered.name);
+
 			cardAltered.expire();
 		}
 
@@ -88,6 +125,7 @@ p._didAlterCard = function(aData){
 
 p._didDisconnect = function() {
 
+	this.socket.removeListener('disconnect', this._clientDisconnectBound);
 	
 	for (var i=0; i < this.activeCards.length; i++){
 		this.activeCards[i].clientDisconnect(this.username);

@@ -1,34 +1,36 @@
 
 var DynamicsCardNode = function() {
 
+	this.connectedClients = [];
+
 };
 
 var EventEmitter = require('events').EventEmitter;
 
 var p = DynamicsCardNode.prototype = new EventEmitter();
 
-p.setup = function(aUniqueName, aCardData, aUpdateFunction, aExpiryInterval) {
+p.setup = function(aUniqueName, aCardData, aExpiryInterval, aMidiInterface) {
 
 	this.name = aUniqueName;
 	this.description = aCardData.description;
 	this.type = aCardData.type;
+	this.cardData = aCardData;
 	this.expiryTime = Date.now() + aExpiryInterval;
-	this.updateCallback = aUpdateFunction;
+	this.expiryInterval = aExpiryInterval;
+	this.midiInterface = aMidiInterface;
 
-	this.connectedClients = [];
-
-
+	this.hasBeenAltered = false;
 
 	// set automatic expiry callback if there is one
-	if (aExpiryInterval > 0)
-		setTimeout(this._onExpiry.bind(this), aExpiryInterval);
+	// if (aExpiryInterval > 0)
+	// 	setTimeout(this._onExpiry.bind(this), aExpiryInterval);
 
 };
 
 p.setState = function(aData, aFromUser){
 
 	try {
-		this.updateCallback.call(this, aData, aFromUser);	
+		this._update(aData, aFromUser);	
 	} catch(e){
 
 		console.log("DynamicsCardNode :: Error calling update callback : ", e);
@@ -39,15 +41,28 @@ p.setState = function(aData, aFromUser){
 
 };
 
-p.clientConnect = function(aClientName){
+p._update = function(aData, aFromUser){
 
-	this.connectedClients.push(aClientName);
+	// override this method
 
 };
 
-p.clientDisconnect = function(aClientName){
+p.clientCardUpdate = function(aData){
 
-	var index = this.connectedClients.indexOf(aClientName);
+	this.emit('clientCardUpdate', { name : this.name, data : aData});
+};
+
+p.clientConnect = function(aClientObject){
+
+	console.log("DynamicsCardNode :: client connected  :" + aClientObject.username);
+
+	this.connectedClients.push(aClientObject);
+
+};
+
+p.clientDisconnect = function(aClientObject){
+
+	var index = this.connectedClients.indexOf(aClientObject);
 	if (index > 0){
 		this.connectedClients.splice(index, 1);
 	}

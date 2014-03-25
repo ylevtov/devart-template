@@ -8,9 +8,11 @@
 
 	<script src="js/libs/jquery-2.0.3.min.js"></script>
 	<script src="js/canvas-nebula.js"></script>
+	<script src="js/DynamicsCardExpiryClient.js"></script>
 	<script src="js/DynamicsCardClient.js"></script>
 
-	<script src="//localhost:8081/socket.io/socket.io.js"></script>
+	<script src="js/libs/socket.io.js"></script>
+	<script src="js/libs/fastclick.js"></script>
 
 	<script>
 
@@ -23,10 +25,14 @@
 
 	document.addEventListener("DOMContentLoaded", function() {
 
+		FastClick.attach(document.body);
+
 		cardContainer = document.getElementById("cardContainer");
 		bgCanvas = document.getElementById("bgCanvas");
 
-		serverSocket = io.connect("http://localhost:8081");
+		var socketAddress = document.location.hostname + ":8081";
+
+		serverSocket = io.connect(socketAddress);
 
 		serverSocket.on("connect", function() {
 			
@@ -40,26 +46,42 @@
 						type = "button";
 					break;
 
+					case "momentary-accel":
+						type = "momentary-accel";
+					break;
+
 					// TODO : add other types here
 				}
 
 				var newCard = new DynamicsCardClient(serverSocket, aData.name, type, aData.description);
 
-				for (var i=0; i< cards.length; i++){
-					cards[i].reduceOrder();
-				}
+				
 
 				cards.push(newCard);
+
 				newCard.show(cardContainer);
+
+				setTimeout(function() {
+					setCardsOrder();
+				}, 100);
 
 			});
 
-			serverSocket.on("cardExpired", function() {
+			serverSocket.on("cardExpired", function(aData) {
 
-				
+				var expiredCardIndex = -1;
 				for (var i=0; i< cards.length; i++){
-					cards[i].increaseOrder();
+					if (cards[i].name == aData){
+						expiredCardIndex = i;
+						break;
+					}
+				}	
+
+				if (expiredCardIndex != -1){
+					cards.splice(expiredCardIndex, 1);
 				}
+
+				setCardsOrder();
 
 			});
 
@@ -100,6 +122,19 @@
 			bgCanvas.style.height = "100%";
 			bgCanvas.style.width = "";
 
+		}
+
+		for (var i=0; i< cards.length; i++)
+			cards[i].performLayout();
+
+	};
+
+	function setCardsOrder() {
+
+		performLayout();
+
+		for (var i=0; i< cards.length; i++){
+			cards[i].setOrder(cards.length - i -1);
 		}
 
 	};

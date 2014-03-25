@@ -2,6 +2,10 @@ var DynamicsClient = require('./DynamicsClientNode.js');
 var DynamicsCardNode = require('./DynamicsCardNode.js');
 var DynamicsMidiInterface = require("./DynamicsMidiInterface.js");
 
+var DynamicsCardNodeSingleButton = require("./card_types/DynamicsCardNodeSingleButton.js");
+var DynamicsCardNodeTimedSingleButton = require("./card_types/DynamicsCardNodeTimedSingleButton.js");
+var DynamicsCardNodeMomentaryAcceleration = require("./card_types/DynamicsCardNodeMomentaryAcceleration.js");
+
 var dynamicsData = require("../data/DynamicsData.json");
 
 var DynamicsManagerNode = function() {
@@ -22,8 +26,10 @@ var DynamicsManagerNode = function() {
 	this.canChangeSong = true;
 
 
+	this._clientDisconnectedBound = this._clientDisconnected.bind(this);
+	this._clientStateChangedBound = this._clientStateChanged.bind(this);
 
-	setInterval(this._checkClientLevels.bind(this), 5000);
+	// setInterval(this._checkClientLevels.bind(this), 5000);
 	// setInterval(this._checkSongStatus.bind(this), 5000);
 
 	this._startNextSong();
@@ -41,8 +47,8 @@ p.addUser = function(aSocket, aUsername){
 
 	this.connectedClients.push(newClient);
 
-	newClient.on('disconnected', this._clientDisconnected.bind(this));
-	newClient.on('stateChanged', this._clientStateChanged.bind(this));
+	newClient.on('disconnected', this._clientDisconnectedBound);
+	newClient.on('stateChanged', this._clientStateChangedBound);
 
 	this._handleClientLevelUpgrade(newClient);
 
@@ -52,12 +58,16 @@ p.addUser = function(aSocket, aUsername){
 
 p._clientDisconnected = function(aClientObject){
 
+	aClientObject.removeListener("disconnected", this._clientDisconnectedBound);
+	aClientObject.removeListener("stateChanged", this._clientStateChangedBound);
+	
 	var clientIndex = -1;
-
 	for (var i=0; i< this.connectedClients.length; i++){
 
 		var client = this.connectedClients[i];
+
 		if (client.username == aClientObject.username){
+			
 			clientIndex = i;
 			break;
 		}
@@ -65,8 +75,11 @@ p._clientDisconnected = function(aClientObject){
 	}
 
 
-	if (clientIndex > 0){
+	if (clientIndex != -1){
 		this.connectedClients.splice(clientIndex, 1);
+
+
+
 	} else {
 		console.log("DynamicsManagerNode :: ERROR, could not find ", aClientObject.username, " in connected clients list" );
 
@@ -150,62 +163,40 @@ p._handleClientLevelUpgrade = function(aClient) {
 
 	var newCardData = availableCards[cardIndex];
 
-	var midiInterface = this.midiInterface;
+	this.midiInterface;
 
-	var updateFunction;
+	
+
+	var newCardObject;
+
 	switch(newCardData.type) {
 
 		case "single":
 
 		case "toggle":
-
-			updateFunction = function(aState, aFromUser) {
-
-				// super simple for now
-				midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, newCardData.midimessage_3);
-
-			};
-
+			newCardObject = new DynamicsCardNodeSingleButton();
 		break;
 
 		case "timed":
-
-			updateFunction = function(aState, aFromUser){
-
-				// super simple for now
-				midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, newCardData.midimessage_3);
-
-				// send the cc again with 0 as the last arg to turn it off
-
-				setTimeout(function() {
-
-					console.log("turning off timed control");
-
-					midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, 0);
-
-				}, 5000);
-
-			};
+			newCardObject = new DynamicsCardNodeTimedSingleButton();
 
 		break;
 
 		case "momentary-accel":
 
-			updateFunction = function(aState, aFromUser) {
-
-				// super simple for now
-				midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, aState);
-
-			};
+			newCardObject = new DynamicsCardNodeMomentaryAcceleration();
 
 		break;
 
+		
+
 	}
+
+	
 
 	var newCardName = newCardData.name + "-" + guid();
 
-	var newCardObject = new DynamicsCardNode();
-	newCardObject.setup(newCardName, newCardData, updateFunction, newCardData.expiry);
+	newCardObject.setup(newCardName, newCardData, newCardData.expiry, this.midiInterface);
 
 	// TODO : assign card to client
 	
@@ -269,7 +260,7 @@ p._loadCardsForLevel = function() {
 
 		if (!this.cardsPerLevel[cardLevel]) this.cardsPerLevel[cardLevel] = [];
 
-		console.log("adding card " + card.name + " for song " + this.currentSong.name + " at level " + card.level);
+		// console.log("adding card " + card.name + " for song " + this.currentSong.name + " at level " + card.level);
 
 		this.cardsPerLevel[cardLevel].push(card);
 
@@ -289,7 +280,7 @@ p._reloadDynamicsData = function() {
 }
 
 
-DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [10, 10, 10, 10, 10, 10];
+DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [2, 2, 2, 2, 2, 2];
 
 
 function s4() {
