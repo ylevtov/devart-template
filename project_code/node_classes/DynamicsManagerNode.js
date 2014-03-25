@@ -17,12 +17,12 @@ var DynamicsManagerNode = function() {
 	this.controlData = dynamicsData;
 	this.currentSong = null;
 	this.currentSongIndex = -1;
-	this.numSongs = dynamicsData.songs.length;
+	this.numSongs = dynamicsData.songs.length-1;
 	this.lastSongStartTime = null;
 	this.canChangeSong = true;
 
 	setInterval(this._checkClientLevels.bind(this), 5000);
-	setInterval(this._checkSongStatus.bind(this), 5000);
+	// setInterval(this._checkSongStatus.bind(this), 5000);
 
 	this._startNextSong();
 };
