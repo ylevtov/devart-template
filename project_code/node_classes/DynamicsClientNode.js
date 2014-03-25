@@ -21,13 +21,15 @@ var p = DynamicsClientNode.prototype = new EventEmitter();
 p.assignCard = function(aCard){
 
 	this.activeCards[aCard.name] = aCard;
-	aCard.on('expired', this._cardExpired.bind(this));
+	aCard.once('expired', this._cardExpired.bind(this));
 
 	this.socket.emit("assignCard", {
 		name : aCard.name,
 		description : aCard.description,
 		type : aCard.type
 	});
+
+	aCard.clientConnect(this);
 
 };
 
@@ -51,6 +53,11 @@ p.otherClientStateChanged = function(aData){
 };
 
 p._cardExpired = function(aName){
+
+	console.log("Card expired : " + aName);
+
+	var expiredCard = this.activeCards[aName];
+
 
 	delete this.activeCards[aName];
 
