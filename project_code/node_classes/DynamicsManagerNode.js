@@ -334,7 +334,7 @@ p._reloadDynamicsData = function() {
 }
 
 
-DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [10, 10, 10, 10, 2, 2];
+DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [10, 10, 10, 10, 10, 10];
 
 
 function s4() {

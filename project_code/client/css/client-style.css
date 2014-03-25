@@ -128,7 +128,7 @@ html, body {
 	letter-spacing: 0.01em;
 	color:black;
 
-	border-radius: 20px;
+	border-radius: 10px;
 
 	padding:5%;
 	margin-left:-5%;
@@ -191,6 +191,12 @@ html, body {
 
 
 
+#cardContainer .card a.control.hexButton:active, #cardContainer .card a.control.hexButton:hover{
+	background-image:url('../images/hex-button-down.svg');
+}
+
+
+
 #cardContainer .card a.control.multi {
 
 	display: block;
@@ -209,9 +215,12 @@ html, body {
 	/*line-height: 53px;*/
 }
 
-#cardContainer .card a.control.hexButton:active, #cardContainer .card a.control.hexButton:hover{
-	background-image:url('../images/hex-button-down.svg');
+#cardContainer .card a.control.multi:hover, #cardContainer .card a.control.multi:active  {
+	background-image:url('../images/hex-button-narrow-down.svg');
+
+
 }
+
 
 #cardContainer .card .multiIdentifier.purple {
 

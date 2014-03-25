@@ -38,6 +38,15 @@
 			
 			serverSocket.on("beat", onBeat);
 
+			serverSocket.on("disconnect", function() {
+
+				// clear all cards
+				for (var i=0; i< cards.length; i++){
+					cards[i].destroy();
+				}
+
+			});
+
 			serverSocket.on("assignCard", function(aData){
 
 				var type = aData.type;

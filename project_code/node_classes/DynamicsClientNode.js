@@ -143,6 +143,8 @@ p._didDisconnect = function() {
 	this.socket.removeListener('disconnect', this._clientDisconnectBound);
 	
 	for (var i=0; i < this.activeCards.length; i++){
+		this.hasMultiUserCard = false;
+		
 		this.activeCards[i].clientDisconnect(this.username);
 	}
 	
