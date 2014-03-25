@@ -21,6 +21,8 @@ p.connectToPort = function() {
 
 	    this.midiOutput.openPort(p);
 
+	    break;
+
 	  }else{
 
 	    console.log("ERROR : Not opening "+p+" - "+midiPortName);

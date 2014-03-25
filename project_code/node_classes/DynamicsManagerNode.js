@@ -21,6 +21,8 @@ var DynamicsManagerNode = function() {
 	this.lastSongStartTime = null;
 	this.canChangeSong = true;
 
+
+
 	setInterval(this._checkClientLevels.bind(this), 5000);
 	// setInterval(this._checkSongStatus.bind(this), 5000);
 
@@ -122,6 +124,19 @@ p._handleClientLevelUpgrade = function(aClient) {
 	
 	var currentLevel = aClient.currentLevel;
 
+	// DEBUG : keep everything on level 0
+
+	currentLevel = 0;
+
+	// DEBUG : reload song data
+
+	this._reloadDynamicsData();
+	this.controlData = dynamicsData;
+	this.currentSong = this.controlData.songs[this.currentSongIndex];
+	this._loadCardsForLevel();
+
+
+
 	var availableCards = this.cardsPerLevel[currentLevel];
 	
 	// for now, just take a random card and assign it to the client
@@ -135,6 +150,8 @@ p._handleClientLevelUpgrade = function(aClient) {
 
 	var newCardData = availableCards[cardIndex];
 
+	var midiInterface = this.midiInterface;
+
 	var updateFunction;
 	switch(newCardData.type) {
 
@@ -142,12 +159,42 @@ p._handleClientLevelUpgrade = function(aClient) {
 
 		case "toggle":
 
-			var midiInterface = this.midiInterface;
-
 			updateFunction = function(aState, aFromUser) {
 
 				// super simple for now
 				midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, newCardData.midimessage_3);
+
+			};
+
+		break;
+
+		case "timed":
+
+			updateFunction = function(aState, aFromUser){
+
+				// super simple for now
+				midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, newCardData.midimessage_3);
+
+				// send the cc again with 0 as the last arg to turn it off
+
+				setTimeout(function() {
+
+					console.log("turning off timed control");
+
+					midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, 0);
+
+				}, 5000);
+
+			};
+
+		break;
+
+		case "momentary-accel":
+
+			updateFunction = function(aState, aFromUser) {
+
+				// super simple for now
+				midiInterface.sendMessage(newCardData.midimessage_1, newCardData.midimessage_2, aState);
 
 			};
 
@@ -207,6 +254,13 @@ p._startNextSong = function() {
 
 	console.log("DynamicsManagerNode :: starting song index " + this.currentSongIndex);
 
+	this._loadCardsForLevel();
+	
+	this.lastSongStartTime = Date.now();
+
+};
+
+p._loadCardsForLevel = function() {
 
 	this.cardsPerLevel = {};
 	for (var i=0; i < this.currentSong.cards.length; i++){
@@ -221,12 +275,21 @@ p._startNextSong = function() {
 
 	}
 
-	this.lastSongStartTime = Date.now();
-
 };
 
+p._reloadDynamicsData = function() {
 
-DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [60, 60, 300, 300, 600, 600];
+	for (var cacheIndex in require.cache){
+		if (cacheIndex.indexOf("DynamicsData.json") != -1){
+			delete require.cache[cacheIndex];
+		}
+	}
+
+	dynamicsData = require("../data/DynamicsData.json");	
+}
+
+
+DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [10, 10, 10, 10, 10, 10];
 
 
 function s4() {
