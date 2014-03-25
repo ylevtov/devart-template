@@ -45,8 +45,21 @@
 
 				var newCard = new DynamicsCardClient(serverSocket, aData.name, type, aData.description);
 
+				for (var i=0; i< cards.length; i++){
+					cards[i].reduceOrder();
+				}
+
 				cards.push(newCard);
 				newCard.show(cardContainer);
+
+			});
+
+			serverSocket.on("cardExpired", function() {
+
+				
+				for (var i=0; i< cards.length; i++){
+					cards[i].increaseOrder();
+				}
 
 			});
 
