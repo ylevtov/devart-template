@@ -40,18 +40,7 @@
 
 			serverSocket.on("assignCard", function(aData){
 
-				var type = "button";
-				switch(aData.type){
-					case "single":
-						type = "button";
-					break;
-
-					case "momentary-accel":
-						type = "momentary-accel";
-					break;
-
-					// TODO : add other types here
-				}
+				var type = aData.type;
 
 				var newCard = new DynamicsCardClient(serverSocket, aData.name, type, aData.description);
 

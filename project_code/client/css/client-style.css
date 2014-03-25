@@ -178,8 +178,58 @@ html, body {
 
 }
 
+#cardContainer .card .controlsContainer.multi {
+
+	position: absolute;
+	top:50%;
+	left:0px;
+	width:100%;
+	height:100%;
+
+	text-align: center;
+}
+
+
+
+#cardContainer .card a.control.multi {
+
+	display: block;
+	width:25%;
+	margin:auto;
+	padding-top:2%;
+
+	float:left;
+
+	background-image:url('../images/hex-button-narrow.svg');
+	background-size:60% auto;
+	background-position: top center;
+	background-repeat:no-repeat;
+
+	font-size: 19px;
+	/*line-height: 53px;*/
+}
+
 #cardContainer .card a.control.hexButton:active, #cardContainer .card a.control.hexButton:hover{
 	background-image:url('../images/hex-button-down.svg');
+}
+
+#cardContainer .card .multiIdentifier.purple {
+
+	position: absolute;
+	width:100%;
+	height:100%;
+	top:-100%;
+	left:0px;
+
+
+	background-image:url('../images/hex-identifier.svg');
+	background-size:30% auto;
+	background-position: center center;
+	background-repeat:no-repeat;
+
+
+	-webkit-animation:pulseSize 2s infinite ease-in-out;
+
 }
 
 #cardContainer .card .feedbackElement{
@@ -243,6 +293,21 @@ html, body {
 
 	100% {
 		color:#bcbcbc;
+	}
+
+}
+
+@-webkit-keyframes pulseSize{
+	0% {
+		-webkit-transform:scale(1);
+	}
+
+	50% {
+		-webkit-transform:scale(1.1);
+	}
+
+	100% {
+		-webkit-transform:scale(1);
 	}
 
 }

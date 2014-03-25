@@ -5,8 +5,11 @@ var DynamicsMidiInterface = require("./DynamicsMidiInterface.js");
 var DynamicsCardNodeSingleButton = require("./card_types/DynamicsCardNodeSingleButton.js");
 var DynamicsCardNodeTimedSingleButton = require("./card_types/DynamicsCardNodeTimedSingleButton.js");
 var DynamicsCardNodeMomentaryAcceleration = require("./card_types/DynamicsCardNodeMomentaryAcceleration.js");
+var DynamicsCardNodeMultiSequence = require("./card_types/DynamicsCardNodeMultiSequence.js");
 
 var dynamicsData = require("../data/DynamicsData.json");
+
+var MULTI_CARD_NUM_USERS = 4;
 
 var DynamicsManagerNode = function() {
 
@@ -29,7 +32,7 @@ var DynamicsManagerNode = function() {
 	this._clientDisconnectedBound = this._clientDisconnected.bind(this);
 	this._clientStateChangedBound = this._clientStateChanged.bind(this);
 
-	// setInterval(this._checkClientLevels.bind(this), 5000);
+	setInterval(this._checkClientLevels.bind(this), 5000);
 	// setInterval(this._checkSongStatus.bind(this), 5000);
 
 	this._startNextSong();
@@ -159,13 +162,20 @@ p._handleClientLevelUpgrade = function(aClient) {
 		return;
 	}
 
-	var cardIndex = getRandomInt(0, availableCards.length-1);
+	var hasValidCard = false;
+	var cardIndex, newCardData;
 
-	var newCardData = availableCards[cardIndex];
+	while(!hasValidCard){
+		cardIndex = getRandomInt(0, availableCards.length-1);
+		newCardData = availableCards[cardIndex];
 
-	this.midiInterface;
+		if (newCardData.type == "multi-sequence")
+			hasValidCard = this._canSupportMultiCard();
+		else
+			hasValidCard = true;
+	}
 
-	
+
 
 	var newCardObject;
 
@@ -188,7 +198,11 @@ p._handleClientLevelUpgrade = function(aClient) {
 
 		break;
 
-		
+		case "multi-sequence":
+
+			newCardObject = new DynamicsCardNodeMultiSequence();
+
+		break;
 
 	}
 
@@ -197,14 +211,54 @@ p._handleClientLevelUpgrade = function(aClient) {
 	var newCardName = newCardData.name + "-" + guid();
 
 	newCardObject.setup(newCardName, newCardData, newCardData.expiry, this.midiInterface);
-
-	// TODO : assign card to client
 	
 	console.log("DynamicsManagerNode :: creating new card for client " + aClient.username + " : " + newCardName);
 
 	aClient.assignCard(newCardObject);
 
+
+	// SOME HORRIBLE CODE FOR MULTI USER SEQUENCES
+
+	if (newCardData.type == "multi-sequence"){
+
+		var currentClientIndex = this.connectedClients.indexOf(aClient);
+		var availableClients = [];
+		for (var i=0; i < this.connectedClients.length; i++){
+			if ((i != currentClientIndex) && !this.connectedClients[i].hasMultiUserCard){
+				availableClients.push(this.connectedClients[i]);
+			}
+		}
+
+		function randOrd(){
+		  return (Math.round(Math.random())-0.5);
+		} 
+
+		availableClients.sort(randOrd);
+
+		for (var i=0; i < MULTI_CARD_NUM_USERS-1; i++){
+
+			availableClients[i].assignCard(newCardObject);
+
+		}
+
+	}
+
 };
+
+p._canSupportMultiCard = function() {
+
+	var availableClients = [];
+	for (var i=0; i < this.connectedClients.length; i++){
+		if (!this.connectedClients[i].hasMultiUserCard){
+			availableClients.push(this.connectedClients[i]);
+		}
+	}
+
+	if (availableClients.length >= MULTI_CARD_NUM_USERS)
+		return true;
+	else
+		return false;
+}
 
 
 p._checkSongStatus = function() {
@@ -280,7 +334,7 @@ p._reloadDynamicsData = function() {
 }
 
 
-DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [2, 2, 2, 2, 2, 2];
+DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [10, 10, 10, 10, 2, 2];
 
 
 function s4() {

@@ -42,7 +42,7 @@
 
 		switch(this.type){
 
-			case "button":
+			case "single":
 
 				this.controlElement = document.createElement("a");
 				this.controlElement.className = "control hexButton";
@@ -93,6 +93,83 @@
 					this.expiryElement.setValue(aUpdateData);
 
 				}
+
+			break;
+
+			case "multi-sequence":
+
+				this.state = "";
+				this.multiSequenceNumber = -1;
+				this.multiSequenceCodeToSend = "";
+
+				this.identifier = document.createElement("div");
+				this.identifier.className = "multiIdentifier purple";
+				this.element.appendChild(this.identifier);
+
+				this.controls = [];
+				this.codes = [
+					"A", "B", "C", "D"
+				];
+
+				// TODO: make this dynamic
+
+				this.controlElement = document.createElement("div");
+				this.controlElement.className = "controlsContainer multi";
+
+				for (var i = 0; i < 4; i++){
+
+					var selectedCode = this.codes[i];
+					var controlElement = document.createElement("a");
+					controlElement.className = "control multi";
+					controlElement.innerHTML = selectedCode;
+
+					var that = this;
+					controlElement.addEventListener("click", function() {
+
+						var code = this.innerHTML;
+
+						that.state = that.multiSequenceNumber + code;
+						that.onStateChange();
+
+					});
+
+					this.controls.push(controlElement);
+
+					this.controlElement.appendChild(controlElement);
+
+				}
+
+				this._doRemoteUpdate = function(aUpdateData){
+
+					// receving instructions from server
+
+					console.log("multi-user, received code data");
+					console.log(aUpdateData);
+
+					this.multiSequenceNumber = aUpdateData.order;
+					this.multiSequenceCodeToSend = aUpdateData.code;
+
+					var suffix;
+					switch(this.multiSequenceNumber){
+						case 0:
+							suffix = "st";
+						break;
+						case 1:
+							suffix = "nd";
+						break;
+						case 2:
+							suffix = "rd";
+						break;	
+						default:
+							suffix = "th";
+						break;
+
+					}
+
+					this.titleElement.innerHTML += "<br/>Press " + this.multiSequenceCodeToSend + " " + (this.multiSequenceNumber + 1) + suffix + " in line";
+
+				}
+
 
 			break;
 

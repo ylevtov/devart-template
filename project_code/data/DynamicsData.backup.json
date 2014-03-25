@@ -66,14 +66,69 @@
 					"expiry" : -1
 				},
 				{
-					"name" : "multi-sequence-A",
-					"description" : "Find others showing this symbol.",
+					"name" : "Bells-Off",
+					"description" : "Turn off the bells",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 53,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-1",
+					"description" : "Trigger a short sound 1",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 57,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-2",
+					"description" : "Trigger a short sound 2",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 54,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-3",
+					"description" : "Trigger a short sound 3",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 55,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "Beat-Repeat-On",
+					"description" : "Beat-Repeat-On",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 56,
+					"midimessage_3" : 127,
+					"type" : "timed",
+					"expiry" : -1
+				},
+				{
+					"name" : "Tremelo-Reverb-On",
+					"description" : "Press the button and tilt the phone down",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
 					"midimessage_2" : 58,
 					"midimessage_3" : 127,
-					"type" : "multi-sequence",
+					"type" : "momentary-accel",
 					"expiry" : 10000
 				}				
 			]

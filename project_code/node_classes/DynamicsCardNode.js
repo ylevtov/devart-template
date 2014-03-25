@@ -1,7 +1,7 @@
 
 var DynamicsCardNode = function() {
 
-	this.connectedClients = [];
+	
 
 };
 
@@ -18,8 +18,10 @@ p.setup = function(aUniqueName, aCardData, aExpiryInterval, aMidiInterface) {
 	this.expiryTime = Date.now() + aExpiryInterval;
 	this.expiryInterval = aExpiryInterval;
 	this.midiInterface = aMidiInterface;
-
+	this.connectedClients = [];
 	this.hasBeenAltered = false;
+
+	this.isMultiUserCard = false;
 
 	// set automatic expiry callback if there is one
 	// if (aExpiryInterval > 0)

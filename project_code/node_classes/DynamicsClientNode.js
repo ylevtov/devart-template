@@ -6,6 +6,8 @@ var DynamicsClientNode = function(aSocket, aUsername) {
 	this.connectedTimestamp = Date.now();
 	this.lastLevelUpTimestamp = this.connectedTimestamp;
 
+	this.hasMultiUserCard = false;
+
 	this.currentLevel = 0;
 	this.activeCards = {};
 
@@ -29,6 +31,16 @@ p.assignCard = function(aCard){
 	console.log(this.activeCards);
 
 	console.log("Username : " + this.username + " assigned card : " + aCard.name);
+
+	if (this.hasMultiUserCard) {
+		console.log("This user already has a multi-user card, not assigning any more");
+		return;
+
+	}
+
+	if (aCard.isMultiUserCard){
+		this.hasMultiUserCard = true;
+	}
 
 	this.activeCards[aCard.name] = aCard;
 	this.activeCards[aCard.name].once('expired', this._cardExpiredBound);
@@ -79,6 +91,9 @@ p._cardExpired = function(aName){
 
 		this.socket.emit('cardExpired', aName);
 
+		if (expiredCard.isMultiUserCard){
+			this.hasMultiUserCard = false;
+		}
 		
 		expiredCard.removeListener("expired", this._cardExpiredBound);
 		expiredCard.removeListener('clientCardUpdate', this._cardClientUpdateBound);
