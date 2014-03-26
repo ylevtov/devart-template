@@ -52,6 +52,9 @@ p._timerClientUpdate = function() {
 
 		clearInterval(this.clientUpdateIntervalId);
 
+		// clear the value
+		this.midiInterface.sendMessage(this.cardData.midimessage_1, this.cardData.midimessage_2, 0);
+
 		this.expire();
 	}
 

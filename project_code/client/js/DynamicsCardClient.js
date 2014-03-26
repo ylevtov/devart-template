@@ -60,6 +60,33 @@
 
 			break;
 
+			case "timed":
+
+				this.controlElement = document.createElement("a");
+				this.controlElement.className = "control hexButton";
+
+				var buttonClickHandler = function() {
+
+					this.state = !this.state;
+					this.onStateChange();
+
+					this.element.removeEventListener("click", buttonClickHandler);
+
+				}.bind(this);
+
+				this.element.addEventListener("click", buttonClickHandler);
+
+				this.expiryElement = new DynamicsCardExpiryClient();
+				this.expiryElement.show(this.element);
+
+				this._doRemoteUpdate = function(aUpdateData){
+
+					this.expiryElement.setValue(aUpdateData);
+
+				}
+
+			break;
+
 			case "momentary-accel":
 
 				this.state = 0;

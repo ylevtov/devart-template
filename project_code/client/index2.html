@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamics Client</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+
+	<link rel="stylesheet" href="css/client-style.css"/>
+
+	<script src="js/libs/jquery-2.0.3.min.js"></script>
+	<script src="js/DynamicsCardExpiryClient.js"></script>
+	<script src="js/DynamicsCardClient.js"></script>
+
+	<script src="js/libs/socket.io.js"></script>
+	<script src="js/libs/fastclick.js"></script>
+
+	<script>
+
+	var serverSocket;
+	var bgCanvas;
+	var cards = [];
+	var username = "user_" + parseInt(Math.random() * 10000);
+
+	var cardContainer;
+
+	document.addEventListener("DOMContentLoaded", function() {
+
+		FastClick.attach(document.body);
+
+		cardContainer = document.getElementById("cardContainer");
+		bgCanvas = document.getElementById("bgCanvas");
+
+		var socketAddress = document.location.hostname + ":8081";
+
+		serverSocket = io.connect(socketAddress);
+
+		serverSocket.on("connect", function() {
+			
+			serverSocket.on("beat", onBeat);
+
+			serverSocket.on("disconnect", function() {
+
+				// clear all cards
+				for (var i=0; i< cards.length; i++){
+					cards[i].destroy();
+				}
+
+			});
+
+			serverSocket.on("assignCard", function(aData){
+
+				var type = aData.type;
+
+				var newCard = new DynamicsCardClient(serverSocket, aData.name, type, aData.description);
+
+				
+
+				cards.push(newCard);
+
+				newCard.show(cardContainer);
+
+				setTimeout(function() {
+					setCardsOrder();
+				}, 100);
+
+			});
+
+			serverSocket.on("cardExpired", function(aData) {
+
+				var expiredCardIndex = -1;
+				for (var i=0; i< cards.length; i++){
+					if (cards[i].name == aData){
+						expiredCardIndex = i;
+						break;
+					}
+				}	
+
+				if (expiredCardIndex != -1){
+					cards.splice(expiredCardIndex, 1);
+				}
+
+				setCardsOrder();
+
+			});
+
+			// tell the server we're ready to join
+			serverSocket.emit("adduser", username);
+
+
+
+		});
+
+		
+		performLayout();
+
+		window.onresize = performLayout;
+	});
+
+	function onBeat() {
+
+		cardContainer.className = "beat";
+		setTimeout(function() {
+			cardContainer.className = "";
+		}.bind(this), 500);
+
+	};
+
+	function performLayout() {
+
+		var windowWidth = window.innerWidth;
+		var windowHeight = window.innerHeight;
+
+		if (windowWidth > windowHeight){
+
+			bgCanvas.style.width = "100%";
+			bgCanvas.style.height = "";
+
+		} else {
+
+			bgCanvas.style.height = "100%";
+			bgCanvas.style.width = "";
+
+		}
+
+		for (var i=0; i< cards.length; i++)
+			cards[i].performLayout();
+
+	};
+
+	function setCardsOrder() {
+
+		performLayout();
+
+		for (var i=0; i< cards.length; i++){
+			cards[i].setOrder(cards.length - i -1);
+		}
+
+	};
+
+	</script>
+
+</head>
+<body>
+
+<div id="siteContainer">
+
+	<div id="background">
+
+		<canvas id="bgCanvas" width="570" height="570"></canvas>
+		<canvas id="bgCanvas2" width="570" height="570" style="display:none"></canvas>
+		<canvas id="bgCanvas3" width="570" height="570" style="display:none"></canvas>
+
+	</div>
+
+	<div id="listenMessage">LISTEN<br/>AND WAIT</div>
+
+	<div id="cardContainer">
+
+
+	</div>
+
+
+	<div id="title">DYNAMICS</div>
+
+
+
+</div>
+
+</body>
+</html>

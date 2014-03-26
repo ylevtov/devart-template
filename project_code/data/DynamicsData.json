@@ -11,6 +11,39 @@
 			"stop_midi_message_3" : 155,
 			"cards" : [
 				{
+					"name" : "One-shot-1",
+					"description" : "Trigger a short sound",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 57,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-2",
+					"description" : "Trigger a short sound",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 54,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-3",
+					"description" : "Trigger a short sound",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 55,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
 					"name" : "Drums-On",
 					"description" : "Turn on the drums",
 					"level" : 0,
@@ -32,6 +65,7 @@
 					"type" : "single",
 					"expiry" : -1
 				},
+				
 				{
 					"name" : "Bells-On",
 					"description" : "Turn on the bells",
@@ -44,93 +78,72 @@
 					"expiry" : -1
 				},
 				{
-					"name" : "Drums-Off",
-					"description" : "Turn off the drums",
+					"name" : "multi-sequence-A",
+					"description" : "Find others showing this symbol.",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
-					"midimessage_2" : 51,
+					"midimessage_2" : 60,
+					"midimessage_3" : 127,
+					"type" : "multi-sequence",
+					"expiry" : 10000
+				},
+				{
+					"name" : "Drums-On-Grains",
+					"description" : "Turn on the drums",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 80,
 					"midimessage_3" : 127,
 					"type" : "single",
 					"expiry" : -1
 				},
 				{
-					"name" : "Bass-Off",
-					"description" : "Turn off the bass",
+					"name" : "Shaker-On-Grains",
+					"description" : "Turn on the shaker",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
-					"midimessage_2" : 52,
+					"midimessage_2" : 81,
 					"midimessage_3" : 127,
 					"type" : "single",
 					"expiry" : -1
-				},
+				},	
 				{
-					"name" : "Bells-Off",
-					"description" : "Turn off the bells",
+					"name" : "Bass-On-Grains",
+					"description" : "Turn on the bass",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
-					"midimessage_2" : 53,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "One-shot-1",
-					"description" : "Trigger a short sound 1",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 57,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "One-shot-2",
-					"description" : "Trigger a short sound 2",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 54,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "One-shot-3",
-					"description" : "Trigger a short sound 3",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 55,
+					"midimessage_2" : 82,
 					"midimessage_3" : 127,
 					"type" : "single",
 					"expiry" : -1
 				},
 				{
 					"name" : "Beat-Repeat-On",
-					"description" : "Beat-Repeat-On",
+					"description" : "Turn on the beat repeat",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
 					"midimessage_2" : 56,
 					"midimessage_3" : 127,
 					"type" : "timed",
-					"expiry" : -1
+					"expiry" : 5000
 				},	
 				{
-					"name" : "multi-sequence-A",
-					"description" : "Find others showing this symbol.",
+					"name" : "Divebomb-Autopan",
+					"description" : "Press the button and tilt the phone down",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
 					"midimessage_2" : 58,
 					"midimessage_3" : 127,
-					"type" : "multi-sequence",
+					"type" : "momentary-accel",
 					"expiry" : 10000
-				}				
+				}
+				
 			]
 		},
 		{ 
@@ -144,6 +157,39 @@
 			"stop_midi_message_3" : 155,
 			"cards" : [
 				{
+					"name" : "One-shot-1",
+					"description" : "Trigger a short sound",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 57,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-2",
+					"description" : "Trigger a short sound",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 54,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
+					"name" : "One-shot-3",
+					"description" : "Trigger a short sound",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 55,
+					"midimessage_3" : 127,
+					"type" : "single",
+					"expiry" : -1
+				},
+				{
 					"name" : "Drums-On",
 					"description" : "Turn on the drums",
 					"level" : 0,
@@ -165,6 +211,7 @@
 					"type" : "single",
 					"expiry" : -1
 				},
+				
 				{
 					"name" : "Bells-On",
 					"description" : "Turn on the bells",
@@ -177,82 +224,16 @@
 					"expiry" : -1
 				},
 				{
-					"name" : "Drums-Off",
-					"description" : "Turn off the drums",
+					"name" : "multi-sequence-A",
+					"description" : "Find others showing this symbol.",
 					"level" : 0,
 					"max_in_play" : 10,
 					"midimessage_1" : 189,
-					"midimessage_2" : 51,
+					"midimessage_2" : 60,
 					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "Bass-Off",
-					"description" : "Turn off the bass",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 52,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "Bells-Off",
-					"description" : "Turn off the bells",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 53,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "One-shot-1",
-					"description" : "Trigger a short sound 1",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 57,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "One-shot-2",
-					"description" : "Trigger a short sound 2",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 54,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "One-shot-3",
-					"description" : "Trigger a short sound 3",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 55,
-					"midimessage_3" : 127,
-					"type" : "single",
-					"expiry" : -1
-				},
-				{
-					"name" : "Beat-Repeat-On",
-					"description" : "Beat-Repeat-On",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 56,
-					"midimessage_3" : 127,
-					"type" : "timed",
-					"expiry" : -1
-				}				
+					"type" : "multi-sequence",
+					"expiry" : 10000
+				}
 			]
 		}
 	]

@@ -21,6 +21,10 @@ var DynamicsManagerNode = function() {
 
 	this.cardsPerLevel = [];
 
+	this._DEBUG_HAS_SHOWN_MULTI = false;
+
+	this.cardSelectionIndex = -1;
+
 	this.controlData = dynamicsData;
 	this.currentSong = null;
 	this.currentSongIndex = -1;
@@ -47,6 +51,11 @@ p.addUser = function(aSocket, aUsername){
 	console.log("DynamicsManagerNode :: adding new user : " + aUsername);
 
 	var newClient = new DynamicsClient(aSocket, aUsername);
+
+	if (this.connectedClients.length == 0){
+		// Send a midi message if this is the first client to connect
+		this.midiInterface.sendMessage(189, 0, 127);
+	}
 
 	this.connectedClients.push(newClient);
 
@@ -88,6 +97,11 @@ p._clientDisconnected = function(aClientObject){
 
 	}
 
+	if (this.connectedClients.length == 0){
+		// Send a midi message if this is the first client to connect
+		this.midiInterface.sendMessage(189, 1, 127);
+	}
+
 };
 
 p._clientStateChanged = function(aData){
@@ -124,8 +138,8 @@ p._checkClientLevels = function(){
 			if ((durationAtInterval / 1000) > levelIntervals[currentClientLevel]){	
 
 				console.log("DynamicsManagerNode :: upgrading client " + client.username + " to level " + (currentClientLevel + 1));
-				client.setLevel(currentClientLevel + 1);
-
+				// client.setLevel(currentClientLevel + 1);
+				client.setLevel(currentClientLevel);
 				this._handleClientLevelUpgrade(client);
 			}
 
@@ -166,7 +180,22 @@ p._handleClientLevelUpgrade = function(aClient) {
 	var cardIndex, newCardData;
 
 	while(!hasValidCard){
-		cardIndex = getRandomInt(0, availableCards.length-1);
+
+		this.cardSelectionIndex++;
+		if (this.cardSelectionIndex >= availableCards.length){
+
+			// DEBUG
+			return;
+
+			this.cardSelectionIndex = 0;
+		}
+		cardIndex = this.cardSelectionIndex;
+
+
+		// cardIndex = getRandomInt(0, availableCards.length-1);
+
+
+
 		newCardData = availableCards[cardIndex];
 
 		if (newCardData.type == "multi-sequence")
@@ -241,11 +270,16 @@ p._handleClientLevelUpgrade = function(aClient) {
 
 		}
 
+		this._DEBUG_HAS_SHOWN_MULTI = true;
+
 	}
 
 };
 
 p._canSupportMultiCard = function() {
+
+	if (this._DEBUG_HAS_SHOWN_MULTI)
+		return false;
 
 	var availableClients = [];
 	for (var i=0; i < this.connectedClients.length; i++){
@@ -334,7 +368,7 @@ p._reloadDynamicsData = function() {
 }
 
 
-DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [10, 10, 10, 10, 10, 10];
+DynamicsManagerNode.LEVEL_INTERVALS_SECONDS = [30, 30, 30, 30, 30, 30];
 
 
 function s4() {
