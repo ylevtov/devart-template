@@ -1,0 +1,25 @@
+#N canvas 148 94 250 299 10;
+#X obj 48 209 spigot;
+#X obj 96 153 sel 1;
+#X msg 96 177 1;
+#X obj 96 76 t a b;
+#X obj 96 102 u_listdrip;
+#X msg 133 178 0;
+#X obj 96 51 r \$1-list;
+#X obj 48 31 r \$1-msgs;
+#X obj 48 239 s \$2-lamp;
+#X obj 96 132 == \$2;
+#X obj 122 213 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X connect 0 0 8 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 1;
+#X connect 2 0 10 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 4 0 9 0;
+#X connect 5 0 0 1;
+#X connect 5 0 10 0;
+#X connect 6 0 3 0;
+#X connect 7 0 0 0;
+#X connect 9 0 1 0;

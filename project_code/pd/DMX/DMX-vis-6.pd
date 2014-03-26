@@ -1,0 +1,11 @@
+#N canvas 369 539 416 387 10;
+#X obj -5 1 cnv 15 412 384 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 206 17 vis 25;
+#X obj 17 149 vis 7;
+#X obj 18 247 vis 1;
+#X obj 34 50 vis 13;
+#X obj 119 17 vis 19;
+#X obj 289 50 vis 31;
+#X obj 289 149 vis 37;
+#X obj 289 248 vis 43;
