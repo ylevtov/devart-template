@@ -1,4 +1,4 @@
-#N canvas 185 169 341 534 10;
+#N canvas 185 169 534 526 10;
 #X obj 27 75 -;
 #X obj 27 145 sel 1;
 #X obj 27 122 change;
@@ -25,9 +25,11 @@
 #X obj 55 397 int;
 #X obj 91 126 r latency-comp;
 #X obj 27 168 del 300;
-#X floatatom 146 83 5 0 0 0 - - -;
 #X obj 27 99 < 0.01;
-#X connect 0 0 27 0;
+#X text 139 171 For each grain \, we map its length to the fade time
+and colour.;
+#X text 72 99 Bang when the grain starts;
+#X connect 0 0 26 0;
 #X connect 1 0 25 0;
 #X connect 2 0 1 0;
 #X connect 3 0 8 0;
@@ -46,7 +48,6 @@
 #X connect 10 0 20 0;
 #X connect 11 0 0 0;
 #X connect 12 0 0 1;
-#X connect 12 0 26 0;
 #X connect 16 0 11 0;
 #X connect 17 0 12 0;
 #X connect 18 0 19 0;
@@ -57,4 +58,4 @@
 #X connect 23 0 8 1;
 #X connect 24 0 25 1;
 #X connect 25 0 3 0;
-#X connect 27 0 2 0;
+#X connect 26 0 2 0;
