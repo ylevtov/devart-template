@@ -1,5 +1,4 @@
 # Dynamics
-(working title)
 
 ## Authors
 - Yuli Levtov [https://github.com/ylevtov](https://github.com/ylevtov)
