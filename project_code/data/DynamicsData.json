@@ -89,6 +89,17 @@
 					"expiry" : 10000
 				},
 				{
+					"name" : "Beat-Repeat-On",
+					"description" : "Turn on the beat repeat",
+					"level" : 0,
+					"max_in_play" : 10,
+					"midimessage_1" : 189,
+					"midimessage_2" : 56,
+					"midimessage_3" : 127,
+					"type" : "timed",
+					"expiry" : 5000
+				},
+				{
 					"name" : "Drums-On-Grains",
 					"description" : "Turn on the drums",
 					"level" : 0,
@@ -120,17 +131,6 @@
 					"midimessage_3" : 127,
 					"type" : "single",
 					"expiry" : -1
-				},
-				{
-					"name" : "Beat-Repeat-On",
-					"description" : "Turn on the beat repeat",
-					"level" : 0,
-					"max_in_play" : 10,
-					"midimessage_1" : 189,
-					"midimessage_2" : 56,
-					"midimessage_3" : 127,
-					"type" : "timed",
-					"expiry" : 5000
 				},	
 				{
 					"name" : "Divebomb-Autopan",
