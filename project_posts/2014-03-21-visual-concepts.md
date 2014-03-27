@@ -6,11 +6,11 @@ I started thinking about traditional control interfaces that are permanently on-
 
 If we could find a way of implicitly encouraging people, once they'd been granted access to a control, to save it until the right time musically before using it, hopefully the overall musical experience in the space with large numbers of people will be better!
 
-# # Card games
+## Card games
 
 At this point I hit on the idea of cards - specifically the 'chance' cards that you draw in board games that grant you a special ability, but to get the greatest benefit you might sit on it for a period of time before unleashing it to devastating effect (or at least I try to during a particularly combatative game of QI). Also of interest is the hoarding behaviour of sitting on a number of cards, which in combination could have an even more interesting effect on the game's outcome.
 
-# # Mockups
+## Mockups
 
 So I tried to express this idea with a couple of mockups:
 
@@ -24,13 +24,13 @@ Implicit in this layout also is the ability to flick through the cards in your '
 
 Next up, we have a number of different controls, from a low-pass filter (with a time allowance which starts counting down as soon as you start using it), and a toggle switch.
 
-# # # Multi-user cards
+### Multi-user cards
 
 Lastly, comes the concept for the multi-user cards, which require groups of audience members to come together and communicate to 'play' them correctly. The impact these collaborative actions will have are going to be some of the largest on the composition, for example changing to a new 'song', or part of the arrangement, or the main tempo.
 
 A small group (around four people) are all shown the same card, and instructed to go and find one another in the space. Then they have to all act together in unison to play the card.
 
-# # Development
+## Development
 
 We settled on this idea quickly and began building the front-end to match.
 
