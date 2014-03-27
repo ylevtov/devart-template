@@ -1,0 +1,18 @@
+#N canvas 628 512 450 300 10;
+#X obj 65 38 inlet;
+#X obj 155 38 inlet;
+#X obj 245 38 inlet;
+#X obj 65 216 s dmx-control;
+#X obj 65 162 pack 0 0 0;
+#X obj 190 64 loadbang;
+#X obj 93 259 print;
+#X obj 155 116 f \$1;
+#X obj 245 116 f \$2;
+#X connect 0 0 4 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 7 0;
+#X connect 5 0 8 0;
+#X connect 7 0 4 1;
+#X connect 8 0 4 2;

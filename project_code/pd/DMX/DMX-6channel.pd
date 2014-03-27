@@ -1,0 +1,72 @@
+#N canvas 18 175 775 550 10;
+#X obj 236 267 r red;
+#X obj 485 267 r blue;
+#X obj 236 453 int;
+#X obj 361 453 int;
+#X obj 485 453 int;
+#X obj 361 267 r green;
+#X obj 236 293 line;
+#X obj 361 293 line;
+#X obj 485 293 line;
+#X obj 236 425 * 1;
+#X obj 361 425 * 1;
+#X obj 485 425 * 1;
+#X obj 171 172 del 1000;
+#X obj 171 149 loadbang;
+#X msg 94 100 open 2;
+#X msg 32 44 devices;
+#X text 86 44 Find out which port your Arduino is on;
+#X text 142 100 Open the right port;
+#X text 232 171 Set the dimmer to full-on;
+#X text 234 225 This is where the colour information for each lamp
+gets sent to the Arduino;
+#X obj 565 408 f;
+#X obj 565 360 vsl 15 40 0 1 0 0 empty empty empty 0 -9 0 10 -262130
+-1 -1 3900 1;
+#X text 585 370 Final brightness control;
+#X obj 245 336 vsl 15 40 0 255 0 0 empty empty empty 0 -9 0 10 -261234
+-1 -1 873 1;
+#X obj 371 336 vsl 15 40 0 255 0 0 empty empty empty 0 -9 0 10 -204786
+-1 -1 2403 1;
+#X obj 495 336 vsl 15 40 0 255 0 0 empty empty empty 0 -9 0 10 -204800
+-1 -1 0 1;
+#X msg 236 478 print 2c\$1w;
+#X msg 361 478 print 3c\$1w;
+#X msg 485 478 print 4c\$1w;
+#X msg 171 193 print 1c255w;
+#X text 229 9 Interface with an Arduino connected to a 6-channel DMX
+lamp;
+#X msg 142 418 close;
+#X obj 32 495 flatspace/comport 2 9600;
+#X msg 182 214 print 6c255w;
+#X msg 181 245 print 1c0w;
+#X connect 0 0 6 0;
+#X connect 1 0 8 0;
+#X connect 2 0 26 0;
+#X connect 3 0 27 0;
+#X connect 4 0 28 0;
+#X connect 5 0 7 0;
+#X connect 6 0 9 0;
+#X connect 6 0 23 0;
+#X connect 7 0 10 0;
+#X connect 7 0 24 0;
+#X connect 8 0 11 0;
+#X connect 8 0 25 0;
+#X connect 9 0 2 0;
+#X connect 10 0 3 0;
+#X connect 11 0 4 0;
+#X connect 12 0 29 0;
+#X connect 13 0 12 0;
+#X connect 14 0 32 0;
+#X connect 15 0 32 0;
+#X connect 20 0 11 1;
+#X connect 20 0 10 1;
+#X connect 20 0 9 1;
+#X connect 21 0 20 0;
+#X connect 26 0 32 0;
+#X connect 27 0 32 0;
+#X connect 28 0 32 0;
+#X connect 29 0 32 0;
+#X connect 31 0 32 0;
+#X connect 33 0 32 0;
+#X connect 34 0 32 0;

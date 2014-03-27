@@ -1,0 +1,28 @@
+#N canvas 842 127 510 597 10;
+#X obj 69 41 inlet;
+#X obj 304 85 dmxFaderChan 1 \$0;
+#X obj 187 187 s \$0-faderMode;
+#X obj 205 164 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 55 211 s \$0-fader;
+#X obj 304 185 dmxFaderChan 6 \$0;
+#X obj 304 305 dmxFaderChan 12 \$0;
+#X obj 304 105 dmxFaderChan 2 \$0;
+#X obj 304 125 dmxFaderChan 3 \$0;
+#X obj 304 145 dmxFaderChan 4 \$0;
+#X obj 304 165 dmxFaderChan 5 \$0;
+#X obj 304 205 dmxFaderChan 7 \$0;
+#X obj 304 225 dmxFaderChan 8 \$0;
+#X obj 304 245 dmxFaderChan 9 \$0;
+#X obj 304 265 dmxFaderChan 10 \$0;
+#X obj 304 285 dmxFaderChan 11 \$0;
+#X obj 67 82 spigot;
+#X obj 120 42 inlet;
+#X obj 73 115 spigot;
+#X obj 130 72 inlet;
+#X connect 0 0 16 0;
+#X connect 3 0 2 0;
+#X connect 16 0 18 0;
+#X connect 17 0 16 1;
+#X connect 18 0 4 0;
+#X connect 19 0 18 1;
