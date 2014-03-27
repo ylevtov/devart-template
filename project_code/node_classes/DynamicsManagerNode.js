@@ -184,9 +184,6 @@ p._handleClientLevelUpgrade = function(aClient) {
 		this.cardSelectionIndex++;
 		if (this.cardSelectionIndex >= availableCards.length){
 
-			// DEBUG
-			return;
-
 			this.cardSelectionIndex = 0;
 		}
 		cardIndex = this.cardSelectionIndex;
@@ -246,8 +243,6 @@ p._handleClientLevelUpgrade = function(aClient) {
 	aClient.assignCard(newCardObject);
 
 
-	// SOME HORRIBLE CODE FOR MULTI USER SEQUENCES
-
 	if (newCardData.type == "multi-sequence"){
 
 		var currentClientIndex = this.connectedClients.indexOf(aClient);
@@ -278,8 +273,8 @@ p._handleClientLevelUpgrade = function(aClient) {
 
 p._canSupportMultiCard = function() {
 
-	if (this._DEBUG_HAS_SHOWN_MULTI)
-		return false;
+	// if (this._DEBUG_HAS_SHOWN_MULTI)
+	// 	return false;
 
 	var availableClients = [];
 	for (var i=0; i < this.connectedClients.length; i++){
