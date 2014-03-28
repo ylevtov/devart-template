@@ -1,4 +1,4 @@
-# Visual Concepts & Audience Interaction 
+# Visual Concepts and Audience Interaction 
 
 In coming up with the user interface for the phones & other devices that people would use to interact with the installation, I really wanted to try and get across - as best I could  - the fact that this is meant to be a collaborative experience in creating and experiencing music, rather than too much of a 'control system' to be mastered and understood.
 
